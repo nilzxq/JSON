@@ -64,6 +64,24 @@ public class JSONTest{
 	   dateArray.add(userYushangjun1);
 	   root.put("date",dateArray);
 	   System.out.println(new JSONObject().toJSONString(root));
-	  
+   }
+   
+   /**
+    * 
+    *  通过实体类转换JSON
+    * 2016年11月29日
+    */
+   public static void setBeanToJSON(){
+	   RootEntity rootEntity=new RootEntity();
+	   rootEntity.setErrorCode("0");
+	   rootEntity.setErrorMsg("调用接口成功");
+	  ArrayList<UserEntity> date = new ArrayList<UserEntity>();
+	  UserEntity userEntity=new UserEntity();
+	  userEntity.setPosition("蚂蚁课堂");
+	  userEntity.setUserName("余胜军");
+	  userEntity.setWebAddress("www.itmayiedu.com");
+	  date.add(userEntity);
+	  rootEntity.setDate(date);
+	  System.out.println(new JSONObject().toJSONString(rootEntity));
    }
 }
