@@ -11,8 +11,10 @@ import com.alibaba.fastjson.JSONObject;
 public class JSONTest{
 	
 	public static void main(String[] args) {
-//		setFastJSON();
-		setMapToJSON();
+//    	setFastJSON();
+//		setMapToJSON();
+		//setBeanToJSON();
+		analysisJSON();
 	}
 	/**
 	 * 通过传统方式自己拼接字符串JSON
@@ -83,5 +85,26 @@ public class JSONTest{
 	  date.add(userEntity);
 	  rootEntity.setDate(date);
 	  System.out.println(new JSONObject().toJSONString(rootEntity));
+   }
+   /**
+    *  解析JSON
+    *  
+    * 2016年11月29日
+    */
+   public static void analysisJSON(){
+	   String jsonstr="	{ \"errorCode\": \"0\",\"errorMsg\": \"调用接口成功\",\"data\": [{\"userName\": \"余胜军\",\"position\": \"蚂蚁课堂创始人\",\"webAddres\": \"www.itmayiedu.com\"   },  {  \"userName\": \"周安旭\",  \"position\": \"蚂蚁课堂合伙人\",   \"webAddres\": \"www.itmayiedu.com\"  }    ]}";
+	// 将json字符串转换成json
+	   JSONObject root = new JSONObject().parseObject(jsonstr);
+	   String errorCode = root.getString("errorCode");
+	   String errorMsg = root.getString("errorMsg");
+	   System.out.println("errorCode:"+errorCode+",errorMsg:"+errorMsg);
+	   JSONArray dataArr = root.getJSONArray("data");
+	   for(int i=0;i<dataArr.size();i++){
+		   JSONObject dataBean=(JSONObject)dataArr.get(i);
+		   String position=dataBean.getString("position");
+		   String userName=dataBean.getString("userName");
+		   String webAddress=dataBean.getString("webAddress");
+		   System.out.println("position:"+position+",userName:"+userName+",webAddress"+webAddress);
+	   }
    }
 }
