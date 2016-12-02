@@ -23,4 +23,9 @@ public class UserEntity {
 	public void setWebAddress(String webAddress) {
 		this.webAddress = webAddress;
 	}
+	@Override
+	public String toString() {
+		return "UserEntity [position=" + position + ", userName=" + userName
+				+ ", webAddress=" + webAddress + "]";
+	}
 }

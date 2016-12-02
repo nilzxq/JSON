@@ -14,7 +14,8 @@ public class JSONTest{
 //    	setFastJSON();
 //		setMapToJSON();
 		//setBeanToJSON();
-		analysisJSON();
+		//analysisJSON();
+		jsonToBean();
 	}
 	/**
 	 * 通过传统方式自己拼接字符串JSON
@@ -106,5 +107,16 @@ public class JSONTest{
 		   String webAddress=dataBean.getString("webAddress");
 		   System.out.println("position:"+position+",userName:"+userName+",webAddress"+webAddress);
 	   }
+   } 
+   /**
+    * 通过JSON转实体类
+    *  
+    * 2016年12月2日
+    */
+   public static void jsonToBean(){
+	   String jsonstr="	{ \"errorCode\": \"0\",\"errorMsg\": \"调用接口成功\",\"date\": [{\"userName\": \"余胜军\",\"position\": \"蚂蚁课堂创始人\",\"webAddres\": \"www.itmayiedu.com\"   },  {  \"userName\": \"周安旭\",  \"position\": \"蚂蚁课堂合伙人\",   \"webAddres\": \"www.itmayiedu.com\"  }    ]}";
+	// 将json字符串转换成json
+	   RootEntity rootEntity = new JSONObject().parseObject(jsonstr, RootEntity.class);
+      System.out.println(rootEntity.toString());
    }
 }
