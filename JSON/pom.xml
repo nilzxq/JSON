@@ -27,5 +27,12 @@
     <artifactId>fastjson</artifactId>
     <version>1.1.26</version>
     </dependency>
+    <!-- 添加谷歌公司解释json工具类 -->
+		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.2.4</version>
+		</dependency>
   </dependencies>
 </project>

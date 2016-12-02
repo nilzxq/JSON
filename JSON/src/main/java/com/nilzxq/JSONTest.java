@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.google.gson.Gson;
 
 public class JSONTest{
 	
@@ -15,7 +16,8 @@ public class JSONTest{
 //		setMapToJSON();
 		//setBeanToJSON();
 		//analysisJSON();
-		jsonToBean();
+		//jsonToBean();
+		gsonTest();
 	}
 	/**
 	 * 通过传统方式自己拼接字符串JSON
@@ -109,7 +111,7 @@ public class JSONTest{
 	   }
    } 
    /**
-    * 通过JSON转实体类
+    * 通过JSON转实体类   反射
     *  
     * 2016年12月2日
     */
@@ -119,4 +121,28 @@ public class JSONTest{
 	   RootEntity rootEntity = new JSONObject().parseObject(jsonstr, RootEntity.class);
       System.out.println(rootEntity.toString());
    }
+   
+   /**
+    * Gson解析json
+    *  
+    * 2016年12月2日
+    */
+    public static void gsonTest(){
+    	Gson gson=new Gson();
+    	 RootEntity rootEntity=new RootEntity();
+  	   rootEntity.setErrorCode("0");
+  	   rootEntity.setErrorMsg("调用接口成功");
+  	  List<UserEntity> date = new ArrayList<UserEntity>();
+  	  UserEntity userEntity=new UserEntity();
+  	  userEntity.setPosition("蚂蚁课堂");
+  	  userEntity.setUserName("余胜军");
+  	  userEntity.setWebAddress("www.itmayiedu.com");
+  	  date.add(userEntity);
+  	  rootEntity.setDate(date);
+  	//实体类转化成json
+  	  String json=gson.toJson(rootEntity);
+  	  System.out.println("json:"+gson.toJson(rootEntity));
+  	  RootEntity rty = gson.fromJson(json,RootEntity.class);
+      System.out.println(rty.toString());
+    }
 }
